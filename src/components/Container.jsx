@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Container = ({ copiaProducts , categoria, buscador}) => {
+const Container = () => {
 
-  const productsEqualFilters = copiaProducts.filter((product)=> {
+  const {products,categoria,buscador} = useSelector((state)=> state.shop)
+
+  const productsEqualFilters = products.filter((product)=> {
       const equalCategory = categoria === "Todas" || categoria === product.category
       const equalBuscador = product.name.toLowerCase().includes(buscador.toLowerCase())
 

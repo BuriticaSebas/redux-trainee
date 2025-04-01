@@ -1,9 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { cambiosBusqueda, cambioCategoria } from "../../redux/actions/actions";
 
-const SearchBar = ( {categoria, buscador, selectCategoria, textoBuscar}) => {
+const SearchBar = () => {
 
-
-
+    const {buscador, categoria} = useSelector((/*state es el almacen del estado, osea ahí esta todos los valores*/state )=> /*Accede al subestado manejado por shopReducer (definido en configureStore).*/state.shop)
+    const dispacth = useDispatch()
     console.log("Esta es la categoria", categoria)
     console.log("Esta es el texto", buscador)
 
@@ -16,7 +19,7 @@ const SearchBar = ( {categoria, buscador, selectCategoria, textoBuscar}) => {
                     type="text"
                     placeholder="Buscador"
                     value={buscador}
-                    onChange={(e) => textoBuscar(e.target.value)}
+                    onChange={(e) => dispacth(cambiosBusqueda(e.target.value))}
 
                 />
 
@@ -24,7 +27,7 @@ const SearchBar = ( {categoria, buscador, selectCategoria, textoBuscar}) => {
                     <label htmlFor="categorias" className="flex items-center">
                         Categorías
                     </label>
-                    <select name="CATEGORIAS" id="categorias"  value={categoria}  onChange={(e)=> selectCategoria(e.target.value)}>
+                    <select name="CATEGORIAS" id="categorias"  value={categoria}  onChange={(e)=> dispacth(cambioCategoria(e.target.value))}>
                         <option value="Todas">Todas</option>
                         <option value="Zapatos">Zapatos</option>
                         <option value="Camisetas">Camisetas</option>
