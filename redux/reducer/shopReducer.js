@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { cambiosBusqueda } from "../actions/actions";
+import { abrirModal, cambiosBusqueda, cerraModal , añadirCarrito, eliminarCarrito} from "../actions/actions";
 import { cambioCategoria } from "../actions/actions";
 
  const initialProducts = [
@@ -17,7 +17,9 @@ import { cambioCategoria } from "../actions/actions";
 const estadoInicial = {
     products: initialProducts,
     categoria: "Todas",
-    buscador: ""
+    buscador: "",
+    modal: false,
+    carrito: []
 }
 
 
@@ -31,6 +33,23 @@ const shopReducer = createReducer(estadoInicial, (constructor)=>{
         state.categoria = action.payload
     })
 
+    constructor.addCase(abrirModal, (state, action)=>{
+        state.modal = action.payload
+    })
+
+
+    constructor.addCase(cerraModal, (state, action)=>{
+        state.modal = action.payload
+    } )
+
+
+    constructor.addCase(añadirCarrito, (state, action) =>{
+        state.carrito = [...state.carrito, action.payload]
+    })
+
+    constructor.addCase(eliminarCarrito, (state,action)=>{
+        state.carrito = state.carrito.filter((item) => item.id !== action.payload);
+    })
 })
 
 

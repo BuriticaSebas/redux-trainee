@@ -1,8 +1,16 @@
 import React from 'react'
 import { MdLocalGroceryStore } from "react-icons/md";
-
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { abrirModal } from '../../redux/actions/actions';
+import ModalCarito from './modalCarito';
 
 const Navbar = () => {
+
+    const {modal} = useSelector((state) => state.shop)
+
+    const dispacth= useDispatch()
+
     return (
         <>
             <nav className='bg-stone-300  flex items-center justify-between  p-2'>
@@ -13,15 +21,16 @@ const Navbar = () => {
                 </div>
 
                 <div>
-                    <ul className='flex  items-center items-center gap-3'>
+                    <ul className='flex  items-center gap-3'>
                         <li className='hover:text-stone-600'>Home</li>
                         <li className='hover:text-stone-600'>Cities</li>
                         <li className='hover:text-stone-600 '>
-                            <button><MdLocalGroceryStore /></button>
+                            <button className='bg-amber-400 p-2 rounded-lg' onClick={()=> dispacth(abrirModal(true))}><MdLocalGroceryStore /></button>
                         </li>
                     </ul>
                 </div>
             </nav>
+            <ModalCarito></ModalCarito>
         </>
     )
 }
