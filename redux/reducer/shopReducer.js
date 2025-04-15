@@ -22,6 +22,7 @@ const estadoInicial = {
     carrito: []
 }
 
+console.log("Creando algo para hacer push")
 
 const shopReducer = createReducer(estadoInicial, (constructor)=>{
 
