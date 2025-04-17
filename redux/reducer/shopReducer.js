@@ -23,6 +23,7 @@ const estadoInicial = {
 }
 
 console.log("Creando algo para hacer push")
+console.log("otra cosa")
 
 const shopReducer = createReducer(estadoInicial, (constructor)=>{
 
